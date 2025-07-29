@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Platform } from 'react-native';
+import { useAuthStore } from '../store/auth-store';
 
 const client = axios.create({
   baseURL:
@@ -9,6 +10,23 @@ const client = axios.create({
   timeout: 10000,
 });
 
+client.interceptors.request.use(
+  (config) => {
+    const { access_token } = useAuthStore.getState();
+
+    if (access_token) {
+      config.headers = config.headers || {};
+      if (typeof config.headers.set === 'function') {
+        config.headers.set('Authorization', `Bearer ${access_token}`);
+      } else {
+        config.headers['Authorization'] = `Bearer ${access_token}`;
+      }
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 /**
  * Generic request wrapper that supports JSON or form-encoded.
  */

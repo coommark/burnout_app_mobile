@@ -3,14 +3,14 @@ import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { Container } from '~/components/Container';
 import { useLogin } from '~/core/api/hooks/useLogin';
-import { useAuthStore } from '~/store/auth-store';
+import { useAuthStore } from '~/core/store/auth-store';
 import { SquircleButton } from 'expo-squircle-view';
 import { colors } from '~/core/theme/colors';
 import { Image } from 'expo-image';
 import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signInSchema, SignInSchema } from '~/core/validation/signin-schema';
-import { useEffect } from 'react';
+import { toast } from 'sonner-native';
 
 export default function SignIn() {
   const { logIn } = useAuthStore();
@@ -28,11 +28,10 @@ export default function SignIn() {
   const onSubmit = (data: SignInSchema) => {
     loginMutation.mutate(data, {
       onSuccess: (response) => {
-        console.log('Login successful:', JSON.stringify(response));
-        logIn();
+        logIn(response.access_token, response.user);
       },
       onError: (error) => {
-        console.error('Login failed:', error);
+        toast.error('Login failed. Please check your credentials and try again.');
       },
     });
   };

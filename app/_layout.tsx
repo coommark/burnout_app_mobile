@@ -1,12 +1,14 @@
-import { useAuthStore } from '~/store/auth-store';
+import { useAuthStore } from '~/core/store/auth-store';
 import '../global.css';
 
 import { Stack } from 'expo-router';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { ThemeProvider } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import theme from '~/core/theme/use-theme-config';
 import { APIProvider } from '~/core/api/api-provider';
+import { Toaster } from 'sonner-native';
+
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: '(tabs)',
@@ -17,6 +19,7 @@ const Providers = ({ children }: { children: ReactNode }) => {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <APIProvider>
         <ThemeProvider value={theme}>{children}</ThemeProvider>
+        <Toaster />
       </APIProvider>
     </GestureHandlerRootView>
   );
@@ -25,6 +28,10 @@ const Providers = ({ children }: { children: ReactNode }) => {
 export default function RootLayout() {
   const { isLoggedIn } = useAuthStore();
 
+  if (__DEV__) {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require('../ReactotronConfig');
+  }
   return (
     <Providers>
       <Stack>
