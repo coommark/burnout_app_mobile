@@ -33,12 +33,20 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.coommark.frontend"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.coommark.frontend"
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6747ed7e-8818-4ec1-bf11-6223eaea1d05"
       }
     }
   }
