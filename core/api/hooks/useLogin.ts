@@ -14,6 +14,7 @@ interface LoginResponse {
 
 export const useLogin = () =>
   useMutation<LoginResponse, Error, LoginInput>({
-    mutationFn: ({ username, password }) =>
-      apiClient('post', '/users/login', { username, password }, 'form'),
+    mutationFn: async ({ username, password }) => {
+      return await apiClient('post', '/users/login', { username, password }, 'form');
+    },
   });

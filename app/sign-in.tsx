@@ -7,20 +7,22 @@ import { useAuthStore } from '~/store/auth-store';
 import { SquircleButton } from 'expo-squircle-view';
 import { colors } from '~/core/theme/colors';
 import { Image } from 'expo-image';
-import { useForm } from 'react-hook-form';
+import { Controller, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signInSchema, SignInSchema } from '~/core/validation/signin-schema';
+import { useEffect } from 'react';
 
 export default function SignIn() {
   const { logIn } = useAuthStore();
   const loginMutation = useLogin();
 
   const {
+    control,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<SignInSchema>({
     resolver: zodResolver(signInSchema),
+    mode: 'onBlur',
   });
 
   const onSubmit = (data: SignInSchema) => {
@@ -49,19 +51,38 @@ export default function SignIn() {
             }}
             contentFit="contain"
           />
-          <TextInput
-            className="bg-secondary mt-4 rounded-lg p-5 text-xl"
-            placeholder="Email"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            onChangeText={(text) => setValue('username', text)}
+          <Controller
+            control={control}
+            name="username"
+            render={({ field: { onChange, value, onBlur } }) => (
+              <TextInput
+                className="mt-4 rounded-lg bg-secondary p-5 text-xl"
+                placeholder="Email"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                onChangeText={onChange}
+                value={value}
+                onBlur={onBlur}
+              />
+            )}
           />
-          <TextInput
-            className="bg-secondary mt-4 rounded-lg p-5 text-xl"
-            placeholder="Password"
-            secureTextEntry
-            onChangeText={(text) => setValue('password', text)}
+          {errors.username && <Text className="mt-2 text-red-500">{errors.username.message}</Text>}
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange, value, onBlur } }) => (
+              <TextInput
+                className="mt-4 rounded-lg bg-secondary p-5 text-xl"
+                placeholder="Password"
+                secureTextEntry
+                onChangeText={onChange}
+                value={value}
+                onBlur={onBlur}
+              />
+            )}
           />
+          {errors.password && <Text className="mt-2 text-red-500">{errors.password.message}</Text>}
+
           <SquircleButton
             className="mt-auto"
             preserveSmoothing
@@ -75,12 +96,11 @@ export default function SignIn() {
             </Text>
           </SquircleButton>
           <Text className="mt-4 text-center text-lg text-gray-500">
-            Don't have an account?{' '}
-            <Link href="/sign-up" className="text-primary font-semibold">
+            Don&apos;t have an account?
+            <Link href="/sign-up" className="font-semibold text-primary">
               Sign Up
             </Link>
           </Text>
-          {errors.username && <Text className="mt-2 text-red-500">{errors.username.message}</Text>}
         </View>
       </Container>
     </>

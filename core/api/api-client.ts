@@ -1,7 +1,11 @@
 import axios from 'axios';
+import { Platform } from 'react-native';
 
 const client = axios.create({
-  baseURL: process.env.EXPO_PUBLIC_API_URL,
+  baseURL:
+    Platform.OS === 'android'
+      ? process.env.EXPO_PUBLIC_API_URL_LOCAL_ANDROID
+      : process.env.EXPO_PUBLIC_API_URL_LOCAL_IOS,
   timeout: 10000,
 });
 
