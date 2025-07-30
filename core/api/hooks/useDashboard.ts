@@ -6,6 +6,7 @@ export interface DailyPrediction {
   burnout_risk: boolean;
   confidence: number;
   model_version: string;
+  label: 'Low' | 'Moderate' | 'High';
 }
 
 export interface DashboardResponse {
