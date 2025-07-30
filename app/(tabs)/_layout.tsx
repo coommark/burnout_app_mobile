@@ -3,6 +3,7 @@ import { Link, Tabs } from 'expo-router';
 import { HeaderButton } from '../../components/HeaderButton';
 import { TabBarIcon } from '../../components/TabBarIcon';
 import { colors } from '~/core/theme/colors';
+import { HeaderLeft } from '~/components/HeaderLeft';
 
 export default function TabLayout() {
   return (
@@ -20,6 +21,7 @@ export default function TabLayout() {
               <HeaderButton />
             </Link>
           ),
+          headerLeft: () => <HeaderLeft />,
         }}
       />
       <Tabs.Screen
@@ -27,6 +29,7 @@ export default function TabLayout() {
         options={{
           title: 'Assessment',
           tabBarIcon: ({ color }) => <TabBarIcon name="list-unordered" color={color} />,
+          headerLeft: () => <HeaderLeft />,
         }}
       />
 
@@ -35,6 +38,7 @@ export default function TabLayout() {
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => <TabBarIcon name="person" color={color} />,
+          headerLeft: () => <HeaderLeft />,
         }}
       />
     </Tabs>

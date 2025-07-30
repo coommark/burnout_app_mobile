@@ -6,6 +6,7 @@ import { LineChart } from 'react-native-gifted-charts';
 import { formatChartData } from '~/core/utils/formatChartData';
 import { colors } from '~/core/theme/colors';
 import { Container } from '~/components/Container';
+import { Image } from 'expo-image';
 
 export default function Home() {
   const { data } = useDashboard();
@@ -67,7 +68,7 @@ export default function Home() {
           <Text style={styles.chartTitle}>No prediction available for today.</Text>
         )}
 
-        {chartData.length > 0 && (
+        {chartData.length > 0 ? (
           <View style={styles.chartContainer}>
             <Text style={styles.chartTitle}>Recent Risk Trend</Text>
             <LineChart
@@ -82,6 +83,10 @@ export default function Home() {
               xAxisLabelTextStyle={{ marginLeft: 6, marginTop: -86 }}
             />
           </View>
+        ) : (
+          <Text className="text-center text-lg">
+            You need submit at least 7 days assessment to view your burnout risk
+          </Text>
         )}
       </View>
     </Container>
@@ -90,8 +95,7 @@ export default function Home() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
+    justifyContent: 'center',
   },
   arcContent: {
     alignItems: 'center',
@@ -112,6 +116,7 @@ const styles = StyleSheet.create({
 
   chartContainer: {
     marginLeft: 24,
+    alignSelf: 'center',
   },
 
   chartTitle: {

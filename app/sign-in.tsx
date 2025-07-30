@@ -95,7 +95,7 @@ export default function SignIn() {
             </Text>
           </SquircleButton>
           <Text className="mt-4 text-center text-lg text-gray-500">
-            Don&apos;t have an account?
+            Don&apos;t have an account?{' '}
             <Link href="/sign-up" className="font-semibold text-primary">
               Sign Up
             </Link>
