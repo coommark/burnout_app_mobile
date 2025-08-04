@@ -1,4 +1,4 @@
-# Early Detection of Burnout Risk – **Mobile App**
+# Early Detection of Burnout Risk among IT Professionals Using Lightweight Daily Self-Assessments: A Machine Learning Approach – **Mobile App**
 
 **Capstone Project – MSIT 5910**  
 **Institution:** University of the People  
