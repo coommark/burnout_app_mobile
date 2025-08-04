@@ -176,9 +176,3 @@ Covers auth, assessment, dashboard, and profile flows.
 | **EAS** | Expo Application Services |
 | **p95** | 95th‑percentile latency   |
 | **MBI** | Maslach Burnout Inventory |
-
----
-
-## Contact
-
-Bugs, suggestions, or contributions? Open an issue or email **mark.y.melton [at] uop.edu**.
