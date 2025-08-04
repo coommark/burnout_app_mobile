@@ -6,7 +6,6 @@ import { LineChart } from 'react-native-gifted-charts';
 import { formatChartData } from '~/core/utils/formatChartData';
 import { colors } from '~/core/theme/colors';
 import { Container } from '~/components/Container';
-import { Image } from 'expo-image';
 
 export default function Home() {
   const { data } = useDashboard();
