@@ -70,6 +70,10 @@ This capstone project delivers a _complete, production-style pipeline_—from da
 
 ---
 
+## Screenshots of Mobile App
+
+---
+
 ## Repository Overview
 
 This cross‑platform **React Native (Expo)** application lets IT professionals perform a **1‑minute, three‑item daily check‑in** (exhaustion, capability, meaningfulness).  
