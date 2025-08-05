@@ -10,8 +10,7 @@
 
 ## 📍 Project at a Glance
 
-Early Detection of **Burnout Risk among IT Professionals** is the MSIT 5910 capstone project for the University of the People.  
-It delivers a _complete, production-style pipeline_—from daily data capture on a phone to real-time ML inference and dashboards—to surface early warning signs of burnout.
+This capstone project delivers a _complete, production-style pipeline_—from daily data capture on a phone to real-time ML inference and dashboards—to surface early warning signs of burnout.
 
 ---
 
@@ -22,7 +21,6 @@ It delivers a _complete, production-style pipeline_—from daily data capture on
 3. ML Inference
 4. Persistence & Analytics
 5. Instant Feedback (Mobile)
-6. Offline Retraining Loop
 
 ---
 
@@ -31,9 +29,9 @@ It delivers a _complete, production-style pipeline_—from daily data capture on
 | Item           | Details                                                          |
 | -------------- | ---------------------------------------------------------------- |
 | Features       | 7-day means of EE, PA, DP (DP = 6 − _meaningfulness_)            |
-| Algorithms     | Logistic Regression, Random Forest, **XGBoost**                  |
+| Algorithms     | Logistic Regression, Random Forest, XGBoost                      |
 | Target         | `Low` / `Moderate` / `High` burnout risk + binary _at-risk_ flag |
-| Data (Phase 1) | 1 000 simulated users, class-balanced, MBI-aligned               |
+| Data (Phase 1) | 1,000 simulated users, class-balanced, MBI-aligned               |
 | Eval split     | Stratified 70 / 30 hold-out                                      |
 | Key metrics    | Per-class P/R/F1, macro ROC-AUC, Brier, log-loss                 |
 | Ops target     | **≤ 2 s** p95 API latency (Locust: 61 ms)                        |
@@ -49,10 +47,9 @@ It delivers a _complete, production-style pipeline_—from daily data capture on
 
 ### 🔧 Backend (FastAPI / Python 3.10)
 
-- Modular **routers**: `/users`, `/assessments`, `/dashboard`, `/push-token`.
-- **Argon2id** password hashing, Pydantic validation, rate-limit & CORS middleware.
-- Model inference endpoint hot-loads `.pkl` artefacts; zero-downtime swaps via CI pipeline.
-- Structured JSON logging + Prometheus `/metrics` for ops.
+- Modular **routers**: `/users`, `/assessments`, `/dashboard`.
+- **Argon2id** password hashing, Pydantic validation & CORS middleware.
+- Model inference endpoint hot-loads `.pkl` artefacts.
 
 ---
 
@@ -64,7 +61,6 @@ It delivers a _complete, production-style pipeline_—from daily data capture on
 | **RQ2**            | _Model choice_: Which algorithm balances **recall**, **calibration**, and **interpretability** best?        |
 | **RQ3**            | _Systems_: Can the prototype deliver **< 1 min** UX + **< 2 s** API inference under ≥ 100 concurrent users? |
 | **Primary Goal**   | Prove technical feasibility of low-burden, continuous burnout monitoring on modest infra.                   |
-| **Secondary Goal** | Prepare codebase & pipelines for Phase 2: consent-based real-world validation.                              |
 
 ---
 
@@ -78,6 +74,8 @@ It delivers a _complete, production-style pipeline_—from daily data capture on
 
 This cross‑platform **React Native (Expo)** application lets IT professionals perform a **1‑minute, three‑item daily check‑in** (exhaustion, capability, meaningfulness).  
 Responses are sent to the FastAPI backend, where an **XGBoost** model instantly returns burnout‑risk feedback and rolling 7‑day trends.
+
+The backend api and ML code lives in a separate repo here: [https://github.com/coommark/burnout_app_api](https://github.com/coommark/burnout_app_api).
 
 ---
 
@@ -126,16 +124,20 @@ frontend/
 
 1. **Clone & install**
    ```bash
-   git clone <repo-url> && cd frontend
-   npm install
+   git clone https://github.com/coommark/burnout_app_mobile.git && cd frontend
+   npm install -g pnpm # Install pnpm package manager
+   pnpm install # Install all required packages
    ```
 2. **Environment**
    ```env
-   API_BASE_URL=https://<backend-host>/api
+   EXPO_PUBLIC_API_URL_LOCAL_ANDROID=http://10.0.2.2:8000
+   EXPO_PUBLIC_API_URL_LOCAL_IOS=http://127.0.0.1:8000
    ```
 3. **Run Dev Server**
    ```bash
-   npm start  # Scan QR with Expo Go or run in emulator
+   pnpm ios  # To run the app in the iOS simulator
+   pnpm android  # To run the app in the Android emulator OR
+   pnpm start  # Scan QR with Expo Go or run in emulator
    ```
 
 ---
