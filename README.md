@@ -70,7 +70,11 @@ This capstone project delivers a _complete, production-style pipeline_—from da
 
 ---
 
-## Screenshots of Mobile App
+## Some screenshots of Mobile App
+<img width="469" height="970" alt="dashboard" src="https://github.com/user-attachments/assets/7cfe0786-6c02-404c-8a1d-9afbcad106d8" />
+<img width="469" height="970" alt="assessment" src="https://github.com/user-attachments/assets/bd2bedcd-009f-40b9-8af3-9ae6d49fd3de" />
+<img width="469" height="970" alt="register" src="https://github.com/user-attachments/assets/954f97cc-ed56-4ce9-baa6-2d93d7965ce5" />
+<img width="469" height="970" alt="login" src="https://github.com/user-attachments/assets/da35f750-9d24-42a2-8633-ceb0ad03b52b" />
 
 ---
 
