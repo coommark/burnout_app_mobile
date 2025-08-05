@@ -72,13 +72,17 @@ This capstone project delivers a _complete, production-style pipeline_—from da
 
 ## Some screenshots of Mobile App
 
-| Dashboard | Assessment |
-|---|---|
+| Dashboard                                                                                                               | Assessment                                                                                                               |
+| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | <img src="https://github.com/user-attachments/assets/7cfe0786-6c02-404c-8a1d-9afbcad106d8" alt="dashboard" width="300"> | <img src="https://github.com/user-attachments/assets/bd2bedcd-009f-40b9-8af3-9ae6d49fd3de" alt="assessment" width="300"> |
 
-| Register | Login |
-|---|---|
+| Register                                                                                                               | Login                                                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | <img src="https://github.com/user-attachments/assets/954f97cc-ed56-4ce9-baa6-2d93d7965ce5" alt="register" width="300"> | <img src="https://github.com/user-attachments/assets/da35f750-9d24-42a2-8633-ceb0ad03b52b" alt="login" width="300"> |
+
+| Notification time setup                                                                                                   | Push notification reminder                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| <img src="https://github.com/user-attachments/assets/8998d1bd-bc61-4f72-bd38-0be1f1003125" alt="notif-setup" width="300"> | <img src="https://github.com/user-attachments/assets/54d5ef90-4788-419b-8106-bc1c81c4d666" alt="login" width="300"> |
 
 ---
 
