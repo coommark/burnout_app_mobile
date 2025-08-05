@@ -25,7 +25,7 @@ export default function Profile() {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Account</Text>
-          <ProfileLink title="Edit Profile" />
+          <ProfileLink title="Edit Profile" to="/edit-profile" />
           <ProfileLink title="Notifications" to="/notifications" />
         </View>
 

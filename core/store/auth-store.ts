@@ -6,6 +6,7 @@ type AuthState = {
   isLoggedIn: boolean;
   logIn: (access_token: string, user: User) => void;
   logOut: () => void;
+  updateUser: (user: Partial<User>) => void;
   user: User | null;
   access_token: string | null;
   hydrated: boolean;
@@ -18,26 +19,10 @@ export const useAuthStore = create(
       access_token: null,
       user: null,
       hydrated: false,
-      logIn: (access_token, user) => {
-        set((state) => {
-          return {
-            ...state,
-            isLoggedIn: true,
-            access_token: access_token,
-            user: user,
-          };
-        });
-      },
-      logOut: () => {
-        set((state) => {
-          return {
-            ...state,
-            isLoggedIn: false,
-            user: null,
-            access_token: null,
-          };
-        });
-      },
+      logIn: (access_token, user) => set((s) => ({ ...s, isLoggedIn: true, access_token, user })),
+      logOut: () => set((s) => ({ ...s, isLoggedIn: false, user: null, access_token: null })),
+      updateUser: (patch) =>
+        set((s) => ({ ...s, user: s.user ? { ...s.user, ...patch } : s.user })),
     }),
     {
       name: 'auth-store',
