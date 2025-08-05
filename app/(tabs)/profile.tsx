@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Stack, Link } from 'expo-router';
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
 import { useAuthStore } from '~/core/store/auth-store';
 import { Container } from '~/components/Container';
@@ -26,7 +26,7 @@ export default function Profile() {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Account</Text>
           <ProfileLink title="Edit Profile" />
-          <ProfileLink title="Notifications" />
+          <ProfileLink title="Notifications" to="/notifications" />
         </View>
 
         <View style={styles.section}>
@@ -52,12 +52,24 @@ export default function Profile() {
   );
 }
 
-const ProfileLink = ({ title }: { title: string }) => (
-  <Pressable style={styles.linkRow}>
-    <Text style={styles.linkText}>{title}</Text>
-    <Feather name="chevron-right" size={20} color="#000" />
-  </Pressable>
-);
+const ProfileLink = ({ title, to }: { title: string; to?: string }) => {
+  const content = (
+    <View style={styles.linkRow}>
+      <Text style={styles.linkText}>{title}</Text>
+      <Feather name="chevron-right" size={20} color="#000" />
+    </View>
+  );
+
+  if (to) {
+    return (
+      <Link href={to} asChild>
+        <Pressable>{content}</Pressable>
+      </Link>
+    );
+  }
+
+  return <Pressable>{content}</Pressable>;
+};
 
 const styles = StyleSheet.create({
   scrollContainer: {
