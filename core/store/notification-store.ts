@@ -3,11 +3,13 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import { zustandStorage } from './persistent-storage';
 
 type NotificationState = {
-  hour: number; // 0–23
-  minute: number; // 0–59
-  enabled: boolean; // allow daily reminder
+  hour: number;
+  minute: number;
+  enabled: boolean;
   notificationId?: string | null;
-  hydrated: boolean;
+
+  lastAssessmentDate: string | null;
+  setLastAssessmentDate: (isoDate: string | null) => void;
 
   setTime: (h: number, m: number) => void;
   setEnabled: (v: boolean) => void;
@@ -21,7 +23,10 @@ export const useNotificationStore = create(
       minute: 0,
       enabled: true,
       notificationId: null,
-      hydrated: false,
+
+      lastAssessmentDate: null,
+      setLastAssessmentDate: (iso) => set({ lastAssessmentDate: iso }),
+
       setTime: (hour, minute) => set({ hour, minute }),
       setEnabled: (enabled) => set({ enabled }),
       setNotificationId: (notificationId) => set({ notificationId }),
@@ -29,9 +34,6 @@ export const useNotificationStore = create(
     {
       name: 'notification-store',
       storage: createJSONStorage(() => zustandStorage),
-      onRehydrateStorage: () => () => {
-        useNotificationStore.setState({ hydrated: true });
-      },
     }
   )
 );
